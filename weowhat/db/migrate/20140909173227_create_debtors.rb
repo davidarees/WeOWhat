@@ -1,6 +1,6 @@
-class CreateRecipients < ActiveRecord::Migration
+class CreateDebtors < ActiveRecord::Migration
   def change
-    create_table :recipients do |t|
+    create_table :debtors do |t|
       t.integer :payment_id
       t.integer :user_id
       t.integer :weighting

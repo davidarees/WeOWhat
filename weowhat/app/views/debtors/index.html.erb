@@ -1,0 +1,27 @@
+<h1>Listing debtors</h1>
+
+<table>
+  <tr>
+    <th>Payment</th>
+    <th>User</th>
+    <th>Weighting</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @debtors.each do |debtor| %>
+  <tr>
+    <td><%= debtor.payment_id %></td>
+    <td><%= debtor.user_id %></td>
+    <td><%= debtor.weighting %></td>
+    <td><%= link_to 'Show', debtor %></td>
+    <td><%= link_to 'Edit', edit_debtor_path(debtor) %></td>
+    <td><%= link_to 'Destroy', debtor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Debtor', new_debtor_path %>
