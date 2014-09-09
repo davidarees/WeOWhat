@@ -1,20 +1,14 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def google_oauth2
-    handle_callback "google"
-  end
 
-  def github
-    handle_callback "github"
-  end
-
-  def handle_callback kind
-    @user = User.find_for_oauth(kind, request.env["omniauth.auth"], current_user)
-
+  def facebook
+    @user = User.find_for_oauth(request.env["omniauth.auth"], current_user)
+    #user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
-      flash[:notice] = "successfully authenticated using oauth"
-      sign_in_and_redirect @user, event: :authentication
+      flash.notice = "Signed in Through Facebook!"
+      sign_in_and_redirect @user
     else
-      session["devise.#{kind}_data"] = request.env["omniauth.auth"]
+      session["devise.user_attributes"] = user.attributes
+      flash.notice = "Problem creating account"
       redirect_to new_user_registration_url
     end
   end

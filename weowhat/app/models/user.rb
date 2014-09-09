@@ -10,15 +10,48 @@ class User < ActiveRecord::Base
 
   has_many :authentications
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      user.first_name = auth.info.first_name 
-      user.last_name = auth.info.last_name 
-      user.name = auth.info.name
-      user.link = auth.info.link 
+  # def self.from_omniauth(auth)
+  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+  #     user.email = auth.info.email
+  #     user.password = Devise.friendly_token[0,20]
+  #     user.name = auth.info.name   # assuming the user model has a name
+  #     user.first_name = auth.info.first_name 
+  #     user.last_name = auth.info.last_name 
+  #     user.name = auth.info.name
+  #     user.link = auth.info.link 
+  #   end
+  # end
+  # def self.find_for_oauth(kind, auth, signed_in_user=nil)
+  def self.find_for_oauth(auth, signed_in_user=nil)
+   if user = signed_in_user || self.find_by_email(auth.info.email)
+        user.name = auth.info.name if user.name.blank?
+        user.save
+      elsif auth_record = Authentication.find_by_provider_and_uid(auth.provider, auth.uid)
+        return auth_record.user
+      else 
+        user = User.create do |user|
+          user.name = auth.info.name
+          user.email = auth.info.email
+          user.password = Devise.friendly_token[0,20]
+          user.first_name = auth.info.first_name 
+          user.last_name = auth.info.last_name 
+          user.name = auth.info.name
+          user.link = auth.info.link 
+        end
+      end
+    if user.persisted?
+      user.authentications.where(auth.slice(:provider, :uid)).first_or_create!
+    end
+    user
+  end
+  # devise will call this, we wont ever need to do it
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if auth = session["devise.google_data"]
+        user.name = auth.info.name
+        user.email = auth.info.email
+      end
     end
   end
+
 end
