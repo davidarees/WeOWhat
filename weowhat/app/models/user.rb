@@ -35,7 +35,8 @@ class User < ActiveRecord::Base
           user.password = Devise.friendly_token[0,20]
           user.first_name = auth.info.first_name 
           user.last_name = auth.info.last_name 
-          user.image = auth.info.image 
+          user.image = auth.info.image
+          user.link = auth.extra.raw_info.link 
         end
       end
     if user.persisted?
