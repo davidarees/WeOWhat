@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fb_id: MyString
+  name: MyString
+  description: MyText
+  active: false
+  base_currency_id: 1
+  user_id: 1
+  start_time: 2014-09-09
+  end_time: 2014-09-09
+  location: MyString
+  fb_owner: MyString
+  fb_time_zone: 1
+
+two:
+  fb_id: MyString
+  name: MyString
+  description: MyText
+  active: false
+  base_currency_id: 1
+  user_id: 1
+  start_time: 2014-09-09
+  end_time: 2014-09-09
+  location: MyString
+  fb_owner: MyString
+  fb_time_zone: 1
