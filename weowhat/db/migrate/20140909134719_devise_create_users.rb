@@ -35,6 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :name
       t.string :link
+      t.string :image
 
       t.timestamps
     end
