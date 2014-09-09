@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Purpose text:</b>
+  <%= @purpose.purpose_text %>
+</p>
+
+<p>
+  <b>No times used:</b>
+  <%= @purpose.no_times_used %>
+</p>
+
+
+<%= link_to 'Edit', edit_purpose_path(@purpose) %> |
+<%= link_to 'Back', purposes_path %>

@@ -1,5 +1,8 @@
 Weowhat::Application.routes.draw do
   
+  resources :purposes
+
+
   resources :currencies
 
 
