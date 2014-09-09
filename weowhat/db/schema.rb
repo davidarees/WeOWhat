@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140909135631) do
+ActiveRecord::Schema.define(:version => 20140909173227) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -19,6 +19,67 @@ ActiveRecord::Schema.define(:version => 20140909135631) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "currencies", :force => true do |t|
+    t.string   "iso_code"
+    t.float    "exchange_rate"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "debtors", :force => true do |t|
+    t.integer  "payment_id"
+    t.integer  "user_id"
+    t.integer  "weighting"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "fb_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active"
+    t.integer  "base_currency_id"
+    t.integer  "user_id"
+    t.date     "start_time"
+    t.date     "end_time"
+    t.string   "location"
+    t.string   "fb_owner"
+    t.integer  "fb_time_zone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  create_table "payers", :force => true do |t|
+    t.integer  "payment_id"
+    t.integer  "user_id"
+    t.integer  "weighting"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.float    "amount"
+    t.integer  "purpose_id"
+    t.integer  "event_id"
+    t.integer  "currency_id"
+    t.datetime "created"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "purposes", :force => true do |t|
+    t.string   "purpose_text"
+    t.integer  "no_times_used"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
