@@ -1,5 +1,8 @@
 Weowhat::Application.routes.draw do
   
+  resources :recipients
+
+
   resources :payers
 
 
