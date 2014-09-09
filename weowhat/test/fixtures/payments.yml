@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: 1.5
+  purpose_id: 1
+  event_id: 1
+  currency_id: 1
+  created: 2014-09-09 17:44:34
+
+two:
+  amount: 1.5
+  purpose_id: 1
+  event_id: 1
+  currency_id: 1
+  created: 2014-09-09 17:44:34
