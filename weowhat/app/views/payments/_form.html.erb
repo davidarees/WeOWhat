@@ -10,22 +10,21 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :currency_id %><br />
+    <%= f.collection_select :currency_id, Currency.all, :id, :iso_code %>
+  </div>
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.text_field :amount %>
   </div>
   <div class="field">
     <%= f.label :purpose_id %><br />
-    <%= f.number_field :purpose_id %>
+    <%= f.collection_select :purpose_id, Purpose.all, :id, :purpose_text %>
   </div>
   <div class="field">
     <%= f.label :event_id %><br />
-    <%= f.number_field :event_id %>
-  </div>
-  <div class="field">
-    <%= f.label :currency_id %><br />
-    <%= f.number_field :currency_id %>
+    <%= f.collection_select :event_id, Event.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :created %><br />
