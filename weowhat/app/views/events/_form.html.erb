@@ -32,8 +32,11 @@
     <%= f.number_field :base_currency_id %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <% User.all.each do |i| %>
+      <%= check_box_tag 'event[user_ids][]', i.id, @event.users.include?(i), id: "event_user_ids_#{i.id}" %>
+      
+      <%= f.label :user_ids, i.name, for: "event_user_ids_#{i.id}" %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :start_time %><br />
