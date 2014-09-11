@@ -1,43 +1,5 @@
-<h1>Listing events</h1>
-
-<table>
-  <tr>
-    <th>Fb</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Active</th>
-    <th>Base currency</th>
-    <th>User</th>
-    <th>Start time</th>
-    <th>End time</th>
-    <th>Location</th>
-    <th>Fb owner</th>
-    <th>Fb time zone</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.fb_id %></td>
-    <td><%= event.name %></td>
-    <td><%= event.description %></td>
-    <td><%= event.active %></td>
-    <td><%= event.base_currency_id %></td>
-    <td><%= event.user_id %></td>
-    <td><%= event.start_time %></td>
-    <td><%= event.end_time %></td>
-    <td><%= event.location %></td>
-    <td><%= event.fb_owner %></td>
-    <td><%= event.fb_time_zone %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Event', new_event_path %>
+<h1>List of events</h1>
+<input ng-model="search" />
+<ul>
+  <li ng-repeat="event in events | filter: {name: search} | orderBy: 'name'" ng-click="selectEvent(event)" ng-class="{ highlighted: event === selectedEvent }">{{ event.name }}</li>
+</ul>

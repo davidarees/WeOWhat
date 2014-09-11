@@ -4,6 +4,12 @@
   var app = angular.module('weOWhatApp', []); 
   app.controller('EventController', ["$scope", "$http", function($scope, $http) {
 
+    $scope.events = [];
+    $scope.newEvent = false;
+
+    $http.get("/events.json").success(function(data){
+      $scope.events = data;
+    })
 
   }])
 
