@@ -1,0 +1,16 @@
+#= depend_on_asset "list-of-events.html"
+
+(function() { 
+  var app = angular.module('weOWhatApp', []); 
+  app.controller('EventController', ["$scope", "$http", function($scope, $http) {
+
+
+  }])
+
+  app.directive('listOfEvents', function() { 
+    return { 
+      restrict: 'C', 
+      templateUrl: "<%= asset_path('list-of-events.html') %>"
+    } 
+  }) 
+})();
