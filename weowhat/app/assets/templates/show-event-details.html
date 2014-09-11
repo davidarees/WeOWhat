@@ -1,0 +1,72 @@
+{{selectedEvent.name}}
+{{selectedEvent.description}}
+{{selectedEvent.active}}
+{{selectedEvent.location}}
+<p>
+  <b>Fb:</b>
+  <%= @event.fb_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @event.active %>
+</p>
+
+<p>
+  <b>Base currency:</b>
+  <%= @event.base_currency_id %>
+</p>
+
+<div>
+  <b>Event members:</b>
+  <% if @event.users.empty? %>
+    no users
+  <% else %>
+  <ul>
+    <% @event.users.each do |i| %>
+    <li>
+      <%= i.name %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+
+<p>
+  <b>Start time:</b>
+  <%= @event.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @event.end_time %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event.location %>
+</p>
+
+<p>
+  <b>Fb owner:</b>
+  <%= @event.fb_owner %>
+</p>
+
+<p>
+  <b>Fb time zone:</b>
+  <%= @event.fb_time_zone %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
