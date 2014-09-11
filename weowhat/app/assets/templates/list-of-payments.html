@@ -1,0 +1,4 @@
+<h1>List of payments for selected event</h1>
+<ul>
+  <li ng-repeat="payment in payments">{{payment.currency.iso_code }}, {{ payment.amount }}, {{ payment.purpose.name }}</li>
+</ul>

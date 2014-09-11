@@ -18,6 +18,7 @@ Weowhat::Application.routes.draw do
   resources :events
 
   get '/event_users/:id', to: 'static#event_users'
+  get '/event_payments/:id', to: 'static#event_payments'
   
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 

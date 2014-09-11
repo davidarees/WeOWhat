@@ -12,4 +12,15 @@ class StaticController < ApplicationController
     end
 
   end
+
+  def event_payments
+    @event = Event.find(params[:id])
+    @payments = @event.payments
+    
+    respond_to do |format|
+      format.html { render json: @payments }
+      format.json { render json: @payments }
+    end
+
+  end
 end

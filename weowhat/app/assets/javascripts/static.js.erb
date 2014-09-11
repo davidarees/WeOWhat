@@ -1,6 +1,7 @@
 #= depend_on_asset "list-of-events.html"
 #= depend_on_asset "show-selected-event.html"
 #= depend_on_asset "list-of-members.html"
+#= depend_on_asset "list-of-members.html"
 
 (function() { 
   var app = angular.module('weOWhatApp', []); 
@@ -15,11 +16,14 @@
 
     $scope.selectEvent = function(event){
       $scope.selectedEvent = event;
-      debugger;
       $http.get("/event_users/"+ event.id +".json").success(function(data){
         $scope.members = data;
       })
-    }
+    $http.get("/event_payments/"+ event.id +".json").success(function(data){
+      $scope.payments = data;
+      debugger;
+    })
+  }
 
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;
@@ -43,6 +47,13 @@
     return { 
       restrict: 'C', 
       templateUrl: "<%= asset_path('list-of-members.html') %>"
+    } 
+  }) 
+
+  app.directive('listOfPayments', function() { 
+    return { 
+      restrict: 'C', 
+      templateUrl: "<%= asset_path('list-of-payments.html') %>"
     } 
   }) 
 })();
