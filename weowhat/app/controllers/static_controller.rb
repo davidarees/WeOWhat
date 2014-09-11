@@ -3,8 +3,7 @@ class StaticController < ApplicationController
   end
 
   def event_users
-    # @event = Event.find(params[:id])
-    @event = Event.first
+    @event = Event.find(params[:id])
     @users = @event.users
 
     respond_to do |format|
