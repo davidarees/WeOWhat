@@ -16,14 +16,16 @@
 
     $scope.selectEvent = function(event){
       $scope.selectedEvent = event;
+      
       $http.get("/event_users/"+ event.id +".json").success(function(data){
         $scope.members = data;
       })
-    $http.get("/event_payments/"+ event.id +".json").success(function(data){
-      $scope.payments = data;
-      debugger;
-    })
-  }
+
+      $http.get("/event_payments/"+ event.id +".json").success(function(data){
+        $scope.payments = data;
+        debugger;
+      })
+    }
 
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;

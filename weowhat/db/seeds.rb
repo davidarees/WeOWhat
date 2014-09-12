@@ -21,9 +21,18 @@ user4 = User.create(name: "Simon Foley", email: "sfoley9999@gmail.com", password
 user5 = User.create(name: "Nick Richards", email: "nick@richards.com", password: "password", password_confirmation: "password")
 
 
-event1 = Event.create(name: "Summer Lunch", description: "Summer Extraveganza", active: true, user_id: user1.id, start_time: 20140929, end_time: 20140929, base_currency_id: curr1.id)
+event1 = Event.create(name: "Summer Lunch", description: "Summer Extraveganza", active: true, start_time: 20140929, end_time: 20140929, base_currency_id: curr1.id)
 
-event2 = Event.create(name: "Dinner Out", description: "Birthday Dinner", active: true, user_id: user2.id, start_time: 20141025, end_time: 20141025, base_currency_id: curr1.id)
+event2 = Event.create(name: "Dinner Out", description: "Birthday Dinner", active: true, start_time: 20141025, end_time: 20141025, base_currency_id: curr1.id)
 
 event1.users = [user1, user2, user4]
 event2.users = [user1, user3, user5]
+
+payment1 = Payment.create(user_id: user1.id, amount: 15.00, purpose_id: purpose1.id, currency_id: curr1.id, event_id: event1.id)
+payment2 = Payment.create(user_id: user1.id, amount: 1.00, purpose_id: purpose2.id, currency_id: curr1.id, event_id: event1.id)
+payment3 = Payment.create(user_id: user1.id, amount: 25.00, purpose_id: purpose3.id, currency_id: curr1.id, event_id: event1.id)
+payment4 = Payment.create(user_id: user2.id, amount: 10.00, purpose_id: purpose3.id, currency_id: curr1.id, event_id: event1.id)
+payment5 = Payment.create(user_id: user4.id, amount: 11.00, purpose_id: purpose2.id, currency_id: curr1.id, event_id: event1.id)
+payment6 = Payment.create(user_id: user1.id, amount: 5.00, purpose_id: purpose2.id, currency_id: curr1.id, event_id: event2.id)
+payment7 = Payment.create(user_id: user3.id, amount: 115.00, purpose_id: purpose3.id, currency_id: curr1.id, event_id: event2.id)
+payment8 = Payment.create(user_id: user5.id, amount: 15.00, purpose_id: purpose1.id, currency_id: curr1.id, event_id: event2.id)
