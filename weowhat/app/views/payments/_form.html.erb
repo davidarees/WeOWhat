@@ -30,6 +30,13 @@
     <%= f.label :created %><br />
     <%= f.datetime_select :created %>
   </div>
+  <div class="field">
+    <% Event_users.all.each do |i| %>
+      <%= check_box_tag 'event[user_ids][]', i.id, @event.users.include?(i), id: "event_user_ids_#{i.id}" %>
+      
+      <%= f.label :user_ids, i.name, for: "event_user_ids_#{i.id}" %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
