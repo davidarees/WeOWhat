@@ -19,16 +19,33 @@
       
       $http.get("/event_users/"+ event.id +".json").success(function(data){
         $scope.members = data;
+        console.log(data)
       })
 
       $http.get("/event_payments/"+ event.id +".json").success(function(data){
-        $scope.payments = data;
-        debugger;
+          $scope.payments = data;
+          
+          for( var i = 0 ; i < $scope.payments.length; i++) {
+            var users = []
+            $scope.members.filter(function(value, index, ar) {
+              if(value.id == $scope.payments[i].user_id) {
+                users.push($scope.members[index]) 
+              } 
+            })
+            $scope.payments[i].users = users
+          }
+
       })
+
     }
 
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;
+    }
+
+    $scope.findUser = function(id) {
+      // console.log($scope.members)
+        
     }
 
   }])
