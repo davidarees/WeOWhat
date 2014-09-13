@@ -23,4 +23,30 @@ class StaticController < ApplicationController
     end
 
   end
+
+  def event_payments_by_user
+    @event = Event.find(params[:id])
+    
+    payments_by_user_grouped = @event.payments.group_by(&:user_id)
+    binding.pry
+    arr = []
+    colorArr = ["#F7464A", "#46BFBD", "#FDB45C"]
+    i=0
+    payments_by_user_grouped.each do | k, v |
+      output = {}  
+      output[:value] = v.sum(&:amount)
+      output[:label] = v[0].user_id
+      output[:color] = colorArr[i]  
+      i = i + 1
+      arr << output  
+    end
+
+    @payments_by_user = arr
+    
+    respond_to do |format|
+      format.html { render json: @payments_by_user }
+      format.json { render json: @payments_by_user }
+    end
+
+  end
 end

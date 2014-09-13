@@ -25,40 +25,32 @@
 
       $http.get("/event_payments/"+ event.id +".json").success(function(data){
         $scope.payments = data;
-        var payments_made = 0
+        var payments_made = 0;
+
           for( var i = 0 ; i < $scope.payments.length; i++) {
-            var users = []
+            // console.log($scope.payments )
+            var users = [];
             $scope.members.filter(function(value, index, ar) {
               if(value.id == $scope.payments[i].user_id) {
                 users.push($scope.members[index]) 
               } 
-
             })
             $scope.payments[i].users = users
+
             payments_made += $scope.payments[i].amount
           }
           $scope.payments_total = payments_made;
         })
 
+      $http.get("/event_payments_by_user/"+ event.id +".json").success(function(data){
+        console.log(data)
+        $scope.someData = data;
+      })
     }
 
-    $scope.someData = [
-      {
-        value: 300,
-        color: "#F7464A",
-        label: "Red"
-      },
-      {
-        value: 50,
-        color: "#46BFBD",
-        label: "Green"
-      },
-      {
-        value: 100,
-        color: "#FDB45C",
-        label: "Yellow"
-      }
-    ]
+ //    $scope.someData = [{value: 41.0, label: 1, color: "#F7464A"},
+ // {value: 10.0, label: 2, color: "#46BFBD"},
+ // {value: 11.0, label: 4, color: "#FDB45C"}]
 
     $scope.someOptions = {
       segementStrokeWidth: 20,

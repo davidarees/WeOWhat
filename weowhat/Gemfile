@@ -9,7 +9,7 @@ gem 'pg'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'angularjs-rails'
-
+gem 'chart-js-rails'
 
 group :development do
   gem 'pry-rails'
