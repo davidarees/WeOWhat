@@ -26,7 +26,7 @@ class StaticController < ApplicationController
 
   def event_payments_by_user
     @event = Event.find(params[:id])
-    
+    @users = @event.users
     payments_by_user_grouped = @event.payments.group_by(&:user_id)
     binding.pry
     arr = []
@@ -35,14 +35,15 @@ class StaticController < ApplicationController
     payments_by_user_grouped.each do | k, v |
       output = {}  
       output[:value] = v.sum(&:amount)
-      output[:label] = v[0].user_id
+      user_name = @users.find{|i| i.id == v[0].user_id}.name
+      output[:label] = user_name
       output[:color] = colorArr[i]  
       i = i + 1
       arr << output  
     end
 
     @payments_by_user = arr
-    
+
     respond_to do |format|
       format.html { render json: @payments_by_user }
       format.json { render json: @payments_by_user }
