@@ -1,10 +1,12 @@
 #= depend_on_asset "list-of-events.html"
 #= depend_on_asset "show-selected-event.html"
 #= depend_on_asset "list-of-members.html"
-#= depend_on_asset "list-of-members.html"
+#= depend_on_asset "list-of-payments.html"
+#= depend_on_asset "payments-chart.html"
 
 (function() { 
-  var app = angular.module('weOWhatApp', []); 
+  'use strict';
+  var app = angular.module('weOWhatApp', ['chartjs']); 
   app.controller('EventController', ["$scope", "$http", function($scope, $http) {
 
     $scope.events = [];
@@ -19,13 +21,11 @@
       
       $http.get("/event_users/"+ event.id +".json").success(function(data){
         $scope.members = data;
-        console.log(data)
       })
 
       $http.get("/event_payments/"+ event.id +".json").success(function(data){
-          $scope.payments = data;
-          var payments_made = 0
-          console.log($scope.payments)
+        $scope.payments = data;
+        var payments_made = 0
           for( var i = 0 ; i < $scope.payments.length; i++) {
             var users = []
             $scope.members.filter(function(value, index, ar) {
@@ -37,40 +37,71 @@
             $scope.payments[i].users = users
             payments_made += $scope.payments[i].amount
           }
-        $scope.payments_total = payments_made;
-      })
+          $scope.payments_total = payments_made;
+        })
 
     }
+
+    $scope.someData = [
+      {
+        value: 300,
+        color: "#F7464A",
+        label: "Red"
+      },
+      {
+        value: 50,
+        color: "#46BFBD",
+        label: "Green"
+      },
+      {
+        value: 100,
+        color: "#FDB45C",
+        label: "Yellow"
+      }
+    ]
+
+    $scope.someOptions = {
+      segementStrokeWidth: 20,
+      percentageInnerCutout: 50,
+      animateRotate: true
+    };
 
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;
     }
 
-  }])
+  }]);
 
-  app.directive('listOfEvents', function() { 
-    return { 
-      restrict: 'C', 
-      templateUrl: "<%= asset_path('list-of-events.html') %>"
-    } 
-  })
-  app.directive('showSelectedEvent', function() { 
-    return { 
-      restrict: 'C', 
-      templateUrl: "<%= asset_path('show-selected-event.html') %>"
-    } 
-  }) 
-  app.directive('listOfMembers', function() { 
-    return { 
-      restrict: 'C', 
-      templateUrl: "<%= asset_path('list-of-members.html') %>"
-    } 
-  }) 
+app.directive('listOfEvents', function() { 
+  return { 
+    restrict: 'C', 
+    templateUrl: "<%= asset_path('list-of-events.html') %>"
+  } 
+})
+app.directive('showSelectedEvent', function() { 
+  return { 
+    restrict: 'C', 
+    templateUrl: "<%= asset_path('show-selected-event.html') %>"
+  } 
+}) 
+app.directive('listOfMembers', function() { 
+  return { 
+    restrict: 'C', 
+    templateUrl: "<%= asset_path('list-of-members.html') %>"
+  } 
+}) 
 
-  app.directive('listOfPayments', function() { 
-    return { 
-      restrict: 'C', 
-      templateUrl: "<%= asset_path('list-of-payments.html') %>"
-    } 
-  }) 
+app.directive('listOfPayments', function() { 
+  return { 
+    restrict: 'C', 
+    templateUrl: "<%= asset_path('list-of-payments.html') %>"
+  } 
+}) 
+
+app.directive('paymentsChart', function() { 
+  return { 
+    restrict: 'C', 
+    templateUrl: "<%= asset_path('payments-chart.html') %>"
+  } 
+}) 
 })();
