@@ -28,7 +28,6 @@
         var payments_made = 0;
 
           for( var i = 0 ; i < $scope.payments.length; i++) {
-            // console.log($scope.payments )
             var users = [];
             $scope.members.filter(function(value, index, ar) {
               if(value.id == $scope.payments[i].user_id) {
@@ -43,12 +42,9 @@
         })
 
       $http.get("/event_payments_by_user/"+ event.id +".json").success(function(data){
-        console.log(data)
-        
-        $scope.someData = data;
+          $scope.someData = data;
       })
     }
-
 
     $scope.someOptions = {
       segementStrokeWidth: 20,

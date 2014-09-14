@@ -28,7 +28,6 @@ class StaticController < ApplicationController
     @event = Event.find(params[:id])
     @users = @event.users
     payments_by_user_grouped = @event.payments.group_by(&:user_id)
-    binding.pry
     arr = []
     colorArr = ["#F7464A", "#46BFBD", "#FDB45C"]
     i=0
