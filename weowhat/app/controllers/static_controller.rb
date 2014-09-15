@@ -29,9 +29,6 @@ class StaticController < ApplicationController
     @users = @event.users
     payments_by_user_grouped = @event.payments.group_by(&:user_id)
     arr = []
-    # binding.pry
-    # colorArr = ["#F7464A", "#46BFBD", "#FDB45C"]
-
     i=0
     payments_by_user_grouped.each do | k, v |
       output = {}  
