@@ -19,8 +19,8 @@
     <%= f.text_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :purpose_id %><br />
-    <%= f.collection_select :purpose_id, Purpose.all, :id, :purpose_text %>
+    <%= f.label :purpose %><br />
+    <%= ff.text_field :purpose %>
   </div>
   <div class="field">
     <%= f.label :event_id %><br />
