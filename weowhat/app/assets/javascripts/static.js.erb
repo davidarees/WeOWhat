@@ -27,22 +27,22 @@
         $scope.payments = data;
         var payments_made = 0;
 
-          for( var i = 0 ; i < $scope.payments.length; i++) {
-            var users = [];
-            $scope.members.filter(function(value, index, ar) {
-              if(value.id == $scope.payments[i].user_id) {
-                users.push($scope.members[index]) 
-              } 
-            })
-            $scope.payments[i].users = users
+        for( var i = 0 ; i < $scope.payments.length; i++) {
+          var users = [];
+          $scope.members.filter(function(value, index, ar) {
+            if(value.id == $scope.payments[i].user_id) {
+              users.push($scope.members[index]) 
+            } 
+          })
+          $scope.payments[i].users = users
 
-            payments_made += $scope.payments[i].amount
-          }
-          $scope.payments_total = payments_made;
-        })
+          payments_made += $scope.payments[i].amount
+        }
+        $scope.payments_total = payments_made;
+      })
 
       $http.get("/event_payments_by_user/"+ event.id +".json").success(function(data){
-          $scope.someData = data;
+        $scope.someData = data;
       })
     }
 
@@ -55,11 +55,7 @@
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;
     }
-  //   $scope.modalShown = false;
-  //     $scope.toggleModal = function() {
-  //       $scope.modalShown = !$scope.modalShown;
-  //     };
-   }]);
+  }]);
 
 app.directive('listOfEvents', function() { 
   return { 
@@ -93,25 +89,4 @@ app.directive('paymentsChart', function() {
     templateUrl: "<%= asset_path('payments-chart.html') %>"
   } 
 }) 
-// app.directive('modalDialog', function() {
-//   return {
-//     restrict: 'E',
-//     scope: {
-//       show: '='
-//     },
-//     replace: true, // Replace with the template below
-//     transclude: true, // we want to insert custom content inside the directive
-//     link: function(scope, element, attrs) {
-//       scope.dialogStyle = {};
-//       if (attrs.width)
-//         scope.dialogStyle.width = attrs.width;
-//       if (attrs.height)
-//         scope.dialogStyle.height = attrs.height;
-//       scope.hideModal = function() {
-//         scope.show = false;
-//       };
-//     },
-//     template: '...' // See below
-//   };
-// });
 })();

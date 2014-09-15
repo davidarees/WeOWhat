@@ -29,14 +29,18 @@ class StaticController < ApplicationController
     @users = @event.users
     payments_by_user_grouped = @event.payments.group_by(&:user_id)
     arr = []
-    colorArr = ["#F7464A", "#46BFBD", "#FDB45C"]
+    # binding.pry
+    # colorArr = ["#F7464A", "#46BFBD", "#FDB45C"]
+
     i=0
     payments_by_user_grouped.each do | k, v |
       output = {}  
       output[:value] = v.sum(&:amount)
       user_name = @users.find(k).name
       output[:label] = user_name
-      output[:color] = colorArr[i]  
+      wheel_color = (360 / payments_by_user_grouped.count) * i
+      colour_array = "hsl(" + wheel_color.to_s + " , 50%, 50%)"
+      output[:color] = colour_array  
       i = i + 1
       arr << output  
     end
@@ -47,6 +51,10 @@ class StaticController < ApplicationController
       format.html { render json: @payments_by_user }
       format.json { render json: @payments_by_user }
     end
+
+  end
+
+  def colour_array
 
   end
 end
