@@ -18,8 +18,8 @@ class StaticController < ApplicationController
     @payments = @event.payments
     
     respond_to do |format|
-      format.html { render json: @payments.to_json(include: [:currency, :purpose]) }
-      format.json { render json: @payments.to_json(include: [:currency, :purpose, :event])}
+      format.html { render json: @payments.to_json(include: [:currency]) }
+      format.json { render json: @payments.to_json(include: [:currency, :event])}
     end
 
   end

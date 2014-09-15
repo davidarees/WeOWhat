@@ -25,6 +25,7 @@
 
       $http.get("/event_payments/"+ event.id +".json").success(function(data){
         $scope.payments = data;
+        console.log($scope.payments)
         var payments_made = 0;
 
         for( var i = 0 ; i < $scope.payments.length; i++) {
