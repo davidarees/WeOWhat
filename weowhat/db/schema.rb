@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20140915184340) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
-    t.string   "purpose"
+    t.string   "reason"
   end
 
   create_table "purposes", :force => true do |t|
