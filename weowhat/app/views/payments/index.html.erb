@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Amount</th>
-    <th>Purpose</th>
+    <th>Reason</th>
     <th>Event</th>
     <th>Currency</th>
     <th>Created</th>
@@ -15,7 +15,7 @@
 <% @payments.each do |payment| %>
   <tr>
     <td><%= payment.amount %></td>
-    <td><%= payment.purpose %></td>
+    <td><%= payment.reason %></td>
     <td><%= payment.event_id %></td>
     <td><%= payment.currency_id %></td>
     <td><%= payment.created %></td>
