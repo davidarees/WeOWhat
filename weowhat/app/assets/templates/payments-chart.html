@@ -1,6 +1,6 @@
 <h1>Payments Chart</h1>
-{{someData}}
+
 <ul>
-  <span ng-repeat="payer in someData" >{{ payer.label }} has payed out {{ payer.value }}</li>
+  <li ng-repeat="payer in someData" >{{ payer.label }} has payed out {{ payer.value }}</li>
 </ul>
 <cjs-pie name="payers" dataset="someData" options="someOptions"></cjs-pie>
