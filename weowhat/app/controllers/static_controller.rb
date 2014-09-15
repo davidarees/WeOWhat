@@ -34,7 +34,7 @@ class StaticController < ApplicationController
     payments_by_user_grouped.each do | k, v |
       output = {}  
       output[:value] = v.sum(&:amount)
-      user_name = @users.find{|i| i.id == v[0].user_id}.name
+      user_name = @users.find(k).name
       output[:label] = user_name
       output[:color] = colorArr[i]  
       i = i + 1

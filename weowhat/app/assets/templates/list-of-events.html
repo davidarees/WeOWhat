@@ -3,7 +3,3 @@
 <ul>
   <li ng-repeat="event in events | filter: {name: search} | orderBy: 'name'" ng-click="selectEvent(event)" ng-class="{ highlighted: event === selectedEvent }">{{ event.name }}</li>
 </ul>
-<!-- <button ng-click='toggleModal()'>Open Modal Dialog</button>
-<modal-dialog show='modalShown' width='750px' height='60%'>
-  <p>Modal Content Goes here<p>
-</modal-dialog> -->
