@@ -102,7 +102,7 @@ app.directive('newPayment', function(){
   }
 })
 
-app.controller('ModalDemoCtrl' , function ($scope, $modal, $log) {
+app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
 
   $scope.open = function (event_id) {
 
@@ -127,13 +127,14 @@ app.controller('ModalDemoCtrl' , function ($scope, $modal, $log) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, items) {
 
   $scope.event_id = items;
-  // $scope.selected = {
-  //   item: $scope.items[0]
-  // };
-  console.log($scope.event_id)
+
+  $http.get("/event_users/"+ $scope.event_id +".json").success(function(data){
+    $scope.members = data;
+    $scope.payer = $scope.members[0];
+  });
 
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);

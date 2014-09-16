@@ -3,6 +3,10 @@
 </div>
 <div class="modal-body">
   <h2 class="content-subhead">New Payment</h2>
+
+  <select ng-model="payer" ng-options="member.name for member in members"></select><br>
+
+
 <%= form_for(@payment) do |f| %>
   <% if @payment.errors.any? %>
     <div id="error_explanation">
