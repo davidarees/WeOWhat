@@ -1,5 +1,19 @@
-<h1>List of payments for selected event</h1>
-<h2>Total payments for the event: £{{ payments_total }}</h2>
-<ul>
-  <li ng-repeat="payment in payments">{{payment.currency.iso_code }}, {{ payment.amount }}, {{ payment.reason }}, {{payment.users[0].name}}</li>
-</ul>
+<h2 class="content-subhead">Payments Made</h2>
+<h3>Total payments for the event: £{{ payments_total }}</h3>
+
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Reason</th>
+      <th>Who paid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="payment in payments">
+      <td>£{{ payment.amount }}</td>
+      <td>{{ payment.reason }}</td>
+      <td>{{payment.users[0].name}}</td>
+    </tr>
+  </tbody>
+</table>

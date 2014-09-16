@@ -6,7 +6,9 @@
 <div id="menu">
   <div class="pure-menu pure-menu-open">
     <a class="pure-menu-heading" href="#">Events</a>
-    <input ng-model="search" />
+    <form class="pure-form">
+      <input ng-model="search" placeholder="event search" />
+    </form>
     <ul>
       <li ng-repeat="event in events | filter: {name: search} | orderBy: 'name'" ng-click="selectEvent(event)" ng-class="{ highlighted: event === selectedEvent }" >
         <a href="#">{{ event.name }}</a>

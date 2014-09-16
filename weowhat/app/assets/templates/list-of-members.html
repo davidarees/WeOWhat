@@ -1,5 +1,4 @@
-<h1>List of members of selected event</h1>
-<input ng-model="search" />
+<h2 class="content-subhead">Event Members</h1>
 <ul>
   <li ng-repeat="member in members | filter: {name: search} | orderBy: 'name'">{{ member.name }}</li>
 </ul>

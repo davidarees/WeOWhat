@@ -1,6 +1,18 @@
-<h1>Payments Chart</h1>
+<h2 class="content-subhead">Payments Summary</h2>
 
-<ul>
-  <li ng-repeat="payer in someData" >{{ payer.label }} has payed out {{ payer.value }}</li>
-</ul>
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="payer in someData">
+      <td>{{ payer.label }}</td>
+      <td>£{{ payer.value }}</td>
+    </tr>
+  </tbody>
+</table>
+
 <cjs-pie name="payers" dataset="someData" options="someOptions"></cjs-pie>

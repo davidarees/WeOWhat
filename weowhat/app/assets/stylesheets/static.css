@@ -40,3 +40,12 @@
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+.main {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+li {
+  list-style-type: none;
+}
