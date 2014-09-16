@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140915184340) do
+ActiveRecord::Schema.define(:version => 20140912135239) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -26,14 +26,6 @@ ActiveRecord::Schema.define(:version => 20140915184340) do
     t.float    "exchange_rate"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-  end
-
-  create_table "debtors", :force => true do |t|
-    t.integer  "payment_id"
-    t.integer  "user_id"
-    t.integer  "weighting"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -57,30 +49,15 @@ ActiveRecord::Schema.define(:version => 20140915184340) do
     t.integer "user_id"
   end
 
-  create_table "payers", :force => true do |t|
-    t.integer  "payment_id"
-    t.integer  "user_id"
-    t.integer  "weighting"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "payments", :force => true do |t|
-    t.float    "amount"
     t.integer  "event_id"
+    t.string   "reason"
+    t.float    "amount"
     t.integer  "currency_id"
     t.datetime "created"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
-    t.string   "reason"
-  end
-
-  create_table "purposes", :force => true do |t|
-    t.string   "purpose_text"
-    t.integer  "no_times_used"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
