@@ -3,9 +3,6 @@ Weowhat::Application.routes.draw do
   resources :payments
 
 
-  resources :purposes
-
-
   resources :currencies
 
 
