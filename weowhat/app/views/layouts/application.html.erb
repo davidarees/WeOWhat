@@ -3,15 +3,14 @@
 <head>
   <title>Weowhat</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-    
-<%= yield %>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">    
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-</body>
+
+    <%= yield %>
+
+  </body>
 </html>
