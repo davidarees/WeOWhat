@@ -41,11 +41,20 @@
   font-family: 'arial', 'sans-serif';
 }
 
-.main {
+#main {
   padding-left: 2em;
   padding-right: 2em;
 }
 
 li {
   list-style-type: none;
+}
+
+canvas {
+  margin-top: 2em;
+}
+
+#search-box {
+  width: 140px;
+  margin-top: 0.5em;
 }

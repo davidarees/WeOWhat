@@ -4,10 +4,12 @@
 #= depend_on_asset "list-of-payments.html"
 #= depend_on_asset "payments-chart.html"
 
+#= depend_on_asset "new-payment-form.html"
+
 (function() { 
   'use strict';
-  var app = angular.module('weOWhatApp', ['chartjs']); 
-  app.controller('EventController', ["$scope", "$http", function($scope, $http) {
+  var app = angular.module('weOWhatApp', ['chartjs', 'ui.bootstrap']); 
+  app.controller('EventController', ["$scope", "$http", function($scope, $http, $modal) {
 
     $scope.events = [];
     $scope.newEvent = false;
@@ -40,6 +42,7 @@
           payments_made += $scope.payments[i].amount
         }
         $scope.payments_total = payments_made;
+        $scope.event_id = event.id;
       })
 
       $http.get("/event_payments_by_user/"+ event.id +".json").success(function(data){
@@ -90,4 +93,54 @@ app.directive('paymentsChart', function() {
     templateUrl: "<%= asset_path('payments-chart.html') %>"
   } 
 }) 
+
+app.directive('newPayment', function(){
+
+  return {
+      restrict: 'C',
+      templateUrl: "<%= asset_path('new-payment-form.html') %>"
+  }
+})
+
+app.controller('ModalDemoCtrl' , function ($scope, $modal, $log) {
+
+  $scope.open = function (event_id) {
+
+    var modalInstance = $modal.open({
+      templateUrl: "<%= asset_path('new-payment-form.html') %>",
+      controller: 'ModalInstanceCtrl',
+      resolve: {
+        items: function () {
+          return $scope.event_id;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+});
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+  $scope.event_id = items;
+  // $scope.selected = {
+  //   item: $scope.items[0]
+  // };
+  console.log($scope.event_id)
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
 })();

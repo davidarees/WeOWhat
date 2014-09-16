@@ -32,4 +32,4 @@
         toggleClass(menuLink, active);
     };
 
-}(this, this.document));
+}(window, document));

@@ -1,10 +1,13 @@
 <h2 class="content-subhead">Payments Made</h2>
-    <!-- Button to trigger modal -->
-<p>
-    <a href="#myModal" role="button" class="pure-button-primary pure-button" data-toggle="modal">
-        New Payment
-    </a>
-</p>
+<input type="hidden" id="eventId" value="{{event_id}}">
+<!-- Button to trigger modal -->
+<div ng-controller="ModalDemoCtrl">
+  <p>
+    <button role="button" class="pure-button-primary pure-button" ng-click="open(eventId)">
+      New Payment
+    </button>
+  </p>
+</div>
 <h3>Total payments for the event: £{{ payments_total }}</h3>
 
 <table class="pure-table">
@@ -33,42 +36,45 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
- -->
+-->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <h1 id="myModalLabel">A Bootstrap Modal with Pure</h1>
-    </div>
+  <%= form_for(@payment) do |f| %>
+  <% if @payment.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
 
-    <div class="modal-body">
-        <p>
-            This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal using just a fraction of the CSS.
-        </p>
+    <ul>
+      <% @payment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :event_id %><br />
+    <%= f.collection_select :event_id, Event.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :currency_id %><br />
+    <%= f.collection_select :currency_id, Currency.all, :id, :iso_code %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :reason %><br />
+    <%= f.text_field :reason %>
+  </div>
 
-        <form class="pure-form pure-form-stacked">
-            <legend>A Stacked Form</legend>
+  <div class="field">
+    <%= f.label :created %><br />
+    <%= f.datetime_select :created %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
 
-            <label for="email">Email</label>
-            <input id="email" type="text" placeholder="Email">
-
-            <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Password">
-
-            <label for="state">State</label>
-            <select id="state">
-                <option>AL</option>
-                <option>CA</option>
-                <option>IL</option>
-            </select>
-
-            <label class="pure-checkbox">
-                <input type="checkbox"> Remember me
-            </label>
-        </form>
-    </div>
-
-    <div class="modal-footer">
-        <button class="pure-button" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="pure-button pure-button-primary">Submit</button>
-    </div>
 </div>
 
