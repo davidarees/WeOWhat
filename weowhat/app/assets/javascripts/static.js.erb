@@ -8,7 +8,7 @@
 
 (function() { 
   'use strict';
-  var app = angular.module('weOWhatApp', ['chartjs', 'ui.bootstrap']); 
+  var app = angular.module('weOWhatApp', ['chartjs', 'ui.bootstrap', 'ngAnimate']); 
   app.controller('EventController', ["$scope", "$http", function($scope, $http, $modal) {
 
     $scope.events = [];
@@ -102,6 +102,38 @@ app.directive('newPayment', function(){
   }
 })
 
+app.directive('uiDate', function() {
+    return {
+      require: '?ngModel',
+      link: function($scope, element, attrs, controller) {
+        var originalRender, updateModel, usersOnSelectHandler;
+        if ($scope.uiDate == null) $scope.uiDate = {};
+        if (controller != null) {
+          updateModel = function(value, picker) {
+            return $scope.$apply(function() {
+              return controller.$setViewValue(element.datepicker("getDate"));
+            });
+          };
+          if ($scope.uiDate.onSelect != null) {
+            usersOnSelectHandler = $scope.uiDate.onSelect;
+            $scope.uiDate.onSelect = function(value, picker) {
+              updateModel(value);
+              return usersOnSelectHandler(value, picker);
+            };
+          } else {
+            $scope.uiDate.onSelect = updateModel;
+          }
+          originalRender = controller.$render;
+          controller.$render = function() {
+            originalRender();
+            return element.datepicker("setDate", controller.$viewValue);
+          };
+        }
+        return element.datepicker($scope.uiDate);
+      }
+    };
+  });
+
 app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
 
   $scope.open = function (event_id) {
@@ -144,4 +176,42 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, ite
     $modalInstance.dismiss('cancel');
   };
 });
+
+app.controller('DatepickerDemoCtrl', function ($scope) {
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  };
+
+  $scope.initDate = new Date('2016-15-20');
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+});
+  $('#datepicker').datepicker({
+      autoclose:true,
+    }).on("changeDate", function(e){
+     console.log(e.date);
+    });
+
 })();

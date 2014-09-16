@@ -17,31 +17,10 @@
         <input id="amount" type="number" placeholder="How much?">
       </div>
       <div class="pure-control-group">
-        <label for="amount">Amount?</label>
-        
+        <label for="datepicker">Start Date</label>
+        <input ng-model="datepicker" ui-date>
       </div>
-  <div class="field">
-    <%= f.label :event_id %><br />
-    <%= f.collection_select :event_id, Event.all, :id, :name %>
-  </div>
-  <div class="field">
-    <%= f.label :currency_id %><br />
-    <%= f.collection_select :currency_id, Currency.all, :id, :iso_code %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :reason %><br />
-    <%= f.text_field :reason %>
-  </div>
-
-  <div class="field">
-    <%= f.label :created %><br />
-    <%= f.datetime_select :created %>
-  </div>
-  <div class="actions">
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
