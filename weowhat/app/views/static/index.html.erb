@@ -1,14 +1,15 @@
 <div id="layout"> 
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+  <header>
+    <h1>WeOWhat</h1>
+    <h2>For all events, large or small, record who paid and what for</h2>
+  </header>
   <div ng-controller="EventController">
     <div class="list-of-events"></div>
     <div id="main">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-      <header>
-        <h1>WeOWhat</h1>
-        <h2>For all events, large or small, record who paid and what for</h2>
-      </header>
+
       <div ng-show="selectedEvent">
         <div class="event-details pure-g">
           <div class="show-selected-event pure-u1 pure-u-md-1-2"></div>
