@@ -148,16 +148,15 @@ app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
       }
     });
 
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
+    modalInstance.result.then(function (payment) {
+      alert(payment.user_id, payment.reason, payment.amount, payment.date)
+      $http.post('/payments.json', {payment: payment}).success(function(data){
+      });
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
 });
-
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
 
 app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, items) {
 
@@ -165,49 +164,23 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, ite
 
   $http.get("/event_users/"+ $scope.event_id +".json").success(function(data){
     $scope.members = data;
-    $scope.payer = $scope.members[0];
+    $scope.payer = $scope.members;
   });
 
+  $scope.newPayment = {};
+
   $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
+    $scope.newPayment.currency_id = 1;
+    $scope.newPayment.event_id = $scope.event_id;
+    $modalInstance.close($scope.newPayment);
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+
 });
 
-app.controller('DatepickerDemoCtrl', function ($scope) {
-  $scope.today = function() {
-    $scope.dt = new Date();
-  };
-  $scope.today();
-
-  $scope.clear = function () {
-    $scope.dt = null;
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-
-  $scope.open = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    $scope.opened = true;
-  };
-
-  $scope.dateOptions = {
-    formatYear: 'yy',
-    startingDay: 1
-  };
-
-  $scope.initDate = new Date('2016-15-20');
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
-});
   $('#datepicker').datepicker({
       autoclose:true,
     }).on("changeDate", function(e){

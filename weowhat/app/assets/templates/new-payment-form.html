@@ -1,31 +1,30 @@
 <div class="modal-header">
-    <h3 class="modal-title">New Payment</h3>
+  <h3 class="modal-title">New Payment</h3>
 </div>
 <div class="modal-body">
-  <form class="pure-form pure-form-aligned">
+  <form name="newPaymentForm" class="pure-form pure-form-aligned"  role="form" novalidate>
+    <input >
     <fieldset>
       <div class="pure-control-group">
-        <label for="payer">Who paid?</label>
-        <select ng-model="payer" ng-options="member.name for member in members"></select><br>
+        <label for="newPaymentUser">Who paid?</label>
+        <select id="newPaymentUser" ng-model="newPayment.user_id" ng-options="member.id as member.name for member in members"></select><br>
       </div>
       <div class="pure-control-group">
         <label for="reason">For what?</label>
-        <input id="reason" type="text" placeholder="What was payment for">
+        <input id="reason" ng-model="newPayment.reason" type="text" placeholder="What was payment for">
       </div>
       <div class="pure-control-group">
         <label for="amount">Amount?</label>
-        <input id="amount" type="number" placeholder="How much?">
+        <input id="amount" ng-model="newPayment.amount" type="number" pattern="[0-9]+([\.|,][0-9]+)?" step="0.01" min="0" placeholder="How much?">
       </div>
       <div class="pure-control-group">
         <label for="datepicker">Start Date</label>
-        <input ng-model="datepicker" ui-date>
+        <input id="datepicker" ng-model="newPayment.created" ui-date>
       </div>
-    <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-</div>
+    </div>
+    <div class="modal-footer">
+      <a role="button" class="pure-button-primary pure-button" ng-click="ok()">Submit</a>
+      <button role="button" class="pure-button-primary pure-button" ng-click="cancel()">
+        Cancel
+      </button>
+    </div>
