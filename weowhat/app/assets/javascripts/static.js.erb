@@ -17,8 +17,11 @@
     $http.get("/events.json").success(function(data){
       $scope.events = data;
     })
+    
 
     $scope.selectEvent = function(event){
+      console.log(event)
+      console.log("here")
       $scope.selectedEvent = event;
       
       $http.get("/event_users/"+ event.id +".json").success(function(data){
@@ -44,10 +47,14 @@
         $scope.event_id = event.id;
       })
 
+
       $http.get("/event_payments_by_user/"+ event.id +".json").success(function(data){
         $scope.someData = data;
       })
     }
+    $scope.$on("update" , function(event, args) {
+        $scope.selectEvent($scope.selectedEvent)
+    }); 
 
     $scope.someOptions = {
       segementStrokeWidth: 20,
@@ -149,7 +156,9 @@ app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
 
     modalInstance.result.then(function (payment) {
       $http.post('/payments.json', {payment: payment}).success(function(data){
-      });
+       console.log(data)
+       $scope.$emit("update", {})
+     });
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });

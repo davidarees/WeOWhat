@@ -1,4 +1,9 @@
 <div id="layout"> 
+  <!-- Menu toggle -->
+  <a href="#menu" id="menuLink" class="menu-link">
+    <!-- Hamburger icon -->
+    <span></span>
+  </a>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
@@ -12,10 +17,10 @@
 
       <div ng-show="selectedEvent">
         <div class="event-details pure-g">
-          <div class="show-selected-event pure-u1 pure-u-md-1-2"></div>
-          <div class="list-of-members pure-u1 pure-u-md-1-2"></div>
-          <div class="list-of-payments pure-u1 pure-u-md-1-2"></div> 
-          <div class="payments-chart pure-u1 pure-u-md-1-2"></div>
+          <div class="show-selected-event pure-u-1 pure-u-sm-1 pure-u-md-1-2"></div>
+          <div class="list-of-members pure-u-1 pure-u-sm-1 pure-u-md-1-2"></div>
+          <div class="list-of-payments pure-u-1 pure-u-sm-1 pure-u-md-1-2"></div> 
+          <div class="payments-chart pure-u-1 pure-u-sm-1 pure-u-md-1-2"></div>
         </div>
       </div>
       <div ng-hide="selectedEvent">

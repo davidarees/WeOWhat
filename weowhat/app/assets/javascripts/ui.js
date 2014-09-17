@@ -1,9 +1,9 @@
-(function (window, document) {
+$(document).ready(function() {
 
     var layout   = document.getElementById('layout'),
         menu     = document.getElementById('menu'),
         menuLink = document.getElementById('menuLink');
-
+        console.log("in ui.js in doc ready")
     function toggleClass(element, className) {
         var classes = element.className.split(/\s+/),
             length = classes.length,
@@ -22,7 +22,7 @@
 
         element.className = classes.join(' ');
     }
-
+     
     menuLink.onclick = function (e) {
         var active = 'active';
 
@@ -31,5 +31,4 @@
         toggleClass(menu, active);
         toggleClass(menuLink, active);
     };
-
-}(window, document));
+})
