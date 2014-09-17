@@ -6,14 +6,19 @@
       <p class="alert"><%= alert %></p>
       <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
       <header>
-        <h1>This is the index.html.erb file</h1>
-        <h2>This is header h2</h2>
+        <h1>WeOWhat</h1>
+        <h2>For all events, large or small, record who paid and what for</h2>
       </header>
-      <div class="event-details pure-g">
-        <div class="show-selected-event pure-u1 pure-u-md-1-2"></div>
-        <div class="list-of-members pure-u1 pure-u-md-1-2"></div>
-        <div class="list-of-payments pure-u1 pure-u-md-1-2"></div> 
-        <div class="payments-chart pure-u1 pure-u-md-1-2"></div>
+      <div ng-show="selectedEvent">
+        <div class="event-details pure-g">
+          <div class="show-selected-event pure-u1 pure-u-md-1-2"></div>
+          <div class="list-of-members pure-u1 pure-u-md-1-2"></div>
+          <div class="list-of-payments pure-u1 pure-u-md-1-2"></div> 
+          <div class="payments-chart pure-u1 pure-u-md-1-2"></div>
+        </div>
+      </div>
+      <div ng-hide="selectedEvent">
+        HIDDEN!!!!!
       </div>
     </div>
   </div>
