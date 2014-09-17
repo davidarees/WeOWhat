@@ -27,7 +27,6 @@
 
       $http.get("/event_payments/"+ event.id +".json").success(function(data){
         $scope.payments = data;
-        console.log($scope.payments)
         var payments_made = 0;
 
         for( var i = 0 ; i < $scope.payments.length; i++) {
@@ -63,33 +62,33 @@
 
 app.directive('listOfEvents', function() { 
   return { 
-    restrict: 'C', 
+    restrict: 'AEC', 
     templateUrl: "<%= asset_path('list-of-events.html') %>"
   } 
 })
 app.directive('showSelectedEvent', function() { 
   return { 
-    restrict: 'C', 
+    restrict: 'AEC', 
     templateUrl: "<%= asset_path('show-selected-event.html') %>"
   } 
 }) 
 app.directive('listOfMembers', function() { 
   return { 
-    restrict: 'C', 
+    restrict: 'AEC', 
     templateUrl: "<%= asset_path('list-of-members.html') %>"
   } 
 }) 
 
 app.directive('listOfPayments', function() { 
   return { 
-    restrict: 'C', 
+    restrict: 'AEC', 
     templateUrl: "<%= asset_path('list-of-payments.html') %>"
   } 
 }) 
 
 app.directive('paymentsChart', function() { 
   return { 
-    restrict: 'C', 
+    restrict: 'AEC', 
     templateUrl: "<%= asset_path('payments-chart.html') %>"
   } 
 }) 
@@ -97,7 +96,7 @@ app.directive('paymentsChart', function() {
 app.directive('newPayment', function(){
 
   return {
-      restrict: 'C',
+      restrict: 'AEC',
       templateUrl: "<%= asset_path('new-payment-form.html') %>"
   }
 })
@@ -149,7 +148,6 @@ app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
     });
 
     modalInstance.result.then(function (payment) {
-      alert(payment.user_id, payment.reason, payment.amount, payment.date)
       $http.post('/payments.json', {payment: payment}).success(function(data){
       });
     }, function () {

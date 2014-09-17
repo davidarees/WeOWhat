@@ -1,5 +1,6 @@
 <h2 class="content-subhead">Payments Made</h2>
 <input type="hidden" id="eventId" value="{{event_id}}">
+<div ng-show="selectedEvent.active">
 <!-- Button to trigger modal -->
 <div ng-controller="ModalDemoCtrl">
   <p>
@@ -8,7 +9,7 @@
     </button>
   </p>
 </div>
-
+</div>
 <h3>Total payments for the event: £{{ payments_total }}</h3>
 
 <table class="pure-table">

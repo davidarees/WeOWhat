@@ -1,6 +1,13 @@
 <h2 class="content-subhead">{{selectedEvent.name}}</h1>
 <div>
   <p>{{selectedEvent.description}}</p>
-  <p>{{selectedEvent.active}}</p>
   <p>{{selectedEvent.location}}</p>
+  <p>{{selectedEvent.active}}</p>
+  <div ng-show="selectedEvent.active">
+    <button class="button-success pure-button">Active</button>
+  </div>
+  <div ng-hide="selectedEvent.active">
+    <button class="pure-button pure-button-disabled">Not Active</button>
+  </div>
+
 </div>
