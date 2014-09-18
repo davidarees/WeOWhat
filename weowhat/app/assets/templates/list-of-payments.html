@@ -1,18 +1,8 @@
 <h2 class="content-subhead">Payments Made</h2>
-<input type="hidden" id="eventId" value="{{event_id}}">
-<div ng-show="selectedEvent.active">
-<!-- Button to trigger modal -->
-<div ng-controller="ModalDemoCtrl">
-  <p>
-    <button role="button" class="pure-button-primary pure-button" ng-click="open(eventId)">
-      New Payment
-    </button>
-  </p>
-</div>
-</div>
+
 <h3>Total payments for the event: £{{ payments_total }}</h3>
 
-<table class="pure-table">
+<table class="pure-table pure-table-striped">
   <thead>
     <tr>
       <th>Amount</th>

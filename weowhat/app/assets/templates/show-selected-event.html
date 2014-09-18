@@ -1,13 +1,23 @@
-<h2 class="content-subhead">{{selectedEvent.name}}</h1>
+<h2 class="content-subhead">{{selectedEvent.name}}</h2>
 <div>
   <p>{{selectedEvent.description}}</p>
   <p>{{selectedEvent.location}}</p>
-  <p>{{selectedEvent.active}}</p>
+  <input type="hidden" id="eventId" value="{{event_id}}">
   <div ng-show="selectedEvent.active">
-    <button class="button-success pure-button">Active</button>
+    <button class="button-success pure-button">Event Active</button>
   </div>
   <div ng-hide="selectedEvent.active">
-    <button class="pure-button pure-button-disabled">Not Active</button>
+    <button class="pure-button pure-button-disabled">Event Inactive</button>
   </div>
+  <p>
+    <div ng-show="selectedEvent.active">
+      <!-- Button to trigger modal -->
+      <div ng-controller="ModalDemoCtrl">
 
+        <button class="pure-button-primary pure-button" ng-click="open(eventId)">
+          New Payment
+        </button>
+      </div>
+    </div>
+  </p>
 </div>
