@@ -1,6 +1,6 @@
 <h2 class="content-subhead">Payments Made</h2>
 
-<h3>Total payments for the event: £{{ payments_total }}</h3>
+<h3>Total payments for the event: £{{ payments_total | number:2 }}</h3>
 
 <table class="pure-table pure-table-striped">
   <thead>
@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="payment in payments">
-      <td>£{{ payment.amount }}</td>
+      <td>£{{ payment.amount | number:2}}</td>
       <td>{{ payment.reason }}</td>
       <td>{{payment.users[0].name}}</td>
     </tr>
