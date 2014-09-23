@@ -140,8 +140,8 @@ app.directive('uiDate', function() {
     };
   });
 
-app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
-
+app.controller('ModalDemoCtrl' , ["$scope", "$modal", "$log", "$http", function ($scope, $modal, $log, $http) {
+  
   $scope.open = function (event_id) {
 
     var modalInstance = $modal.open({
@@ -163,9 +163,9 @@ app.controller('ModalDemoCtrl' , function ($scope, $modal, $log, $http) {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-});
+}]);
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, items) {
+app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "$http", "items", function ($scope, $modalInstance, $http, items) {
 
   $scope.event_id = items;
 
@@ -186,7 +186,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, ite
     $modalInstance.dismiss('cancel');
   };
 
-});
+}]);
 
   $('#datepicker').datepicker({
       autoclose:true,
