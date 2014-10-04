@@ -1,7 +1,13 @@
 <h2 class="content-subhead">{{selectedEvent.name}}</h2>
 <div>
-  <p>{{selectedEvent.description}}</p>
-  <p>{{selectedEvent.location}}</p>
+  <h4 for="description">Description:</h4>
+  <p id="description">{{selectedEvent.description}}</p>
+  <h4 for="location">Location:</h4>
+  <p id="location">{{selectedEvent.location}}</p>
+  <h4 for="startdate">Start Date:</h4>
+  <p id="startdate">{{selectedEvent.start_time | date : 'dd-MMM-yyyy' }}</p>
+  <h4 for="enddate">End Date:</h4>
+  <p id="enddate">{{selectedEvent.end_time | date : 'dd-MMM-yyyy' }}</p>
   <input type="hidden" id="eventId" value="{{event_id}}">
   <div ng-show="selectedEvent.active">
     <button class="button-success pure-button">Event Active</button>
