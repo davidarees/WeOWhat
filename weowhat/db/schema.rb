@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20140912135239) do
     t.string   "reason"
     t.float    "amount"
     t.integer  "currency_id"
-    t.datetime "created"
+    t.date     "date_paid"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"

@@ -20,8 +20,6 @@
     
 
     $scope.selectEvent = function(event){
-      console.log(event)
-      console.log("here")
       $scope.selectedEvent = event;
       
       $http.get("/event_users/"+ event.id +".json").success(function(data){
@@ -179,6 +177,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, ite
   $scope.ok = function () {
     $scope.newPayment.currency_id = 1;
     $scope.newPayment.event_id = $scope.event_id;
+    console.log($scope.newPayment);
     $modalInstance.close($scope.newPayment);
   };
 

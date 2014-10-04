@@ -16,7 +16,7 @@
       <td>£{{ payment.amount | number:2}}</td>
       <td>{{ payment.reason }}</td>
       <td>{{ payment.users[0].name }}</td>
-      <td>{{ payment.created | date: 'dd-MMM-yyyy' }}</td>
+      <td>{{ payment.date_paid | date: 'dd-MMM-yyyy' }}</td>
     </tr>
   </tbody>
 </table>

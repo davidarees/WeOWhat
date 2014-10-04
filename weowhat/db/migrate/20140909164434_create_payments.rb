@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :reason
       t.float :amount
       t.integer :currency_id
-      t.timestamp :created
+      t.date :date_paid
 
       t.timestamps
     end

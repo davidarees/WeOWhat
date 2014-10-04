@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :amount, :created, :currency_id, :event_id, :reason, :user_id
+  attr_accessible :amount, :date_paid, :currency_id, :event_id, :reason, :user_id
 
   belongs_to :currency
   # belongs_to :purpose
