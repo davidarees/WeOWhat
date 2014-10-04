@@ -15,7 +15,7 @@ class StaticController < ApplicationController
 
   def event_payments
     @event = Event.find(params[:id])
-    @payments = @event.payments
+    @payments = @event.payments.sort_by(&:date_paid).reverse
     
     respond_to do |format|
       format.html { render json: @payments.to_json(include: [:currency]) }
