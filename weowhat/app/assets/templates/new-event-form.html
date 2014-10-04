@@ -1,64 +1,42 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<form name="newEventForm" class="pure-form pure-form-aligned" role="form" novalidate>
+  <fieldset>
+    <div class="pure-control-group">
+      <label for="name">Event Name</label>
+      <input id="name" type="text" placeholder="Event name" ng-model="newEvent.name">
     </div>
-  <% end %>
+    <div class="pure-control-group">
+      <label for="description">Description</label>
+      <input id="description" type="text" placeholder="Description" ng-model="newEvent.description">
+    </div>
+    <div class="pure-control-group">
+      <label for="location">Location</label>
+      <input id="location" type="text" placeholder="Description" ng-model="newEvent.location">
+    </div>
+    <div class="pure-control-group">
+      <label for="start_date">Date paid</label>
+      <input id="start_date" ng-model="newEvent.start_date" ui-date>
+    </div>
+    <div class="pure-control-group">
+      <label for="end_date">Date paid</label>
+      <input id="end_date" ng-model="newEvent.end_date" ui-date>
+    </div>
+    <div class="pure-controls">
+        <label for="cb" class="pure-checkbox">
+            <input id="cb" type="checkbox" ng-model="newEvent.active"> Active
+        </label>
+    </div>
+    <div class="pure-control-group">
+      <% User.all.each do |i| %>
+        <%= check_box_tag 'event[user_ids][]', i.id, @event.users.include?(i), id: "event_user_ids_#{i.id}" %>
+        
+        <%= f.label :user_ids, i.name, for: "event_user_ids_#{i.id}" %>
+      <% end %>
+    </div>
+    <a role="button" class="pure-button-primary pure-button" ng-click="ok()">Submit</a>
+  </fieldset>
+</form>
 
-  <div class="field">
-    <%= f.label :fb_id %><br />
-    <%= f.text_field :fb_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :base_currency_id %><br />
-    <%= f.number_field :base_currency_id %>
-  </div>
-  <div class="field">
-    <% User.all.each do |i| %>
-      <%= check_box_tag 'event[user_ids][]', i.id, @event.users.include?(i), id: "event_user_ids_#{i.id}" %>
-      
-      <%= f.label :user_ids, i.name, for: "event_user_ids_#{i.id}" %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :start_time %><br />
-    <%= f.date_select :start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %><br />
-    <%= f.date_select :end_time %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :fb_owner %><br />
-    <%= f.text_field :fb_owner %>
-  </div>
-  <div class="field">
-    <%= f.label :fb_time_zone %><br />
-    <%= f.number_field :fb_time_zone %>
-  </div>
-  <div class="actions">
+  <div class="pure-button pure-button-primary">
     <%= f.submit %>
   </div>
 <% end %>
