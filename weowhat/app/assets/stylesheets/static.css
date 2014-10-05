@@ -61,7 +61,7 @@ canvas {
 
 #search-box {
   margin: 5px;
-  width: 140px;
+  width: 125px;
   margin-top: 0.5em;
 }
 
@@ -100,4 +100,10 @@ table {
 
 h3 {
   text-align: center;
+}
+
+.newEventButton {
+  padding: 10px;
+  background-color: #7BC761;
+  color: white;
 }
