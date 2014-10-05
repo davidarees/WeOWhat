@@ -60,6 +60,16 @@
         $scope.selectEvent($scope.selectedEvent)
     }); 
 
+    $scope.$on("events_update" , function(event, args) {
+        // get the list of events for the nav bar
+        $http.get("/events.json").success(function(data){
+          $scope.events = data;
+          $scope.newEvent={};
+        })
+
+        
+    });
+
     // options used in chartjs
     $scope.someOptions = {
       segementStrokeWidth: 20,
@@ -73,6 +83,11 @@
 
     $scope.ok = function () {
       console.log($scope.newEvent);
+       $http.post('/events.json', { newEvent: $scope.newEvent}).success(function(data){
+        console.log(data)
+        $scope.newEventForm.$setPristine();
+        $scope.$emit("events_update", {})
+      });
       
     };
 
@@ -146,7 +161,7 @@ app.directive('uiDate', function() {
             return element.datepicker("setDate", controller.$viewValue);
           };
         }
-        return element.datepicker($scope.uiDate);
+      return element.datepicker($scope.uiDate);
       }
     };
   });
@@ -201,9 +216,8 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, ite
 });
 
   $('#datepicker').datepicker({
-      autoclose:true,
+      autoclose:true, dateFormat: 'dd-M-yy'
     }).on("changeDate", function(e){
      console.log(e.date);
     });
-
 })();

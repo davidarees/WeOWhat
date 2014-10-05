@@ -25,13 +25,6 @@
         </div>
       </div>
       <div ng-hide="selectedEvent">
-        Hidden!
-        <!-- <div class="new-event-form pure-u-1 pure-u-sm-1 pure-u-md-1-2"></div> -->
-<!--         <div class="new-event-form"></div>
-        <div new-event-form></div>
-        <new-event-form></new-event-form> -->
-
-        New event form
         <form name="newEventForm" class="pure-form pure-form-aligned" role="form" novalidate>
           <fieldset>
             <div class="pure-control-group">
@@ -47,16 +40,17 @@
               <input id="location" type="text" placeholder="Description" ng-model="newEvent.location">
             </div>
             <div class="pure-control-group">
-              <label for="start_date">Start Date</label>
-              <input id="start_date" ng-model="newEvent.start_date" ui-date>
+              <label for="start_time">Start Date</label>
+              <input id="start_time" ng-model="newEvent.start_time" ui-date>
             </div>
             <div class="pure-control-group">
-              <label for="end_date"> End Date</label>
-              <input id="end_date" ng-model="newEvent.end_date" ui-date>
+              <label for="end_time"> End Date</label>
+              <input id="end_time" ng-model="newEvent.end_time" 
+              "dd-mm-yyyy" ui-date>
             </div>
             <div class="pure-controls">
                 <label for="cb" class="pure-checkbox">
-                    <input id="cb" type="checkbox" ng-model="newEvent.active"> Active
+                    <input id="cb" type="checkbox" ng-model="newEvent.active" ng-init="checked"> Active
                 </label>
             </div>
 
