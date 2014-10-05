@@ -8,7 +8,7 @@
   <p class="alert"><%= alert %></p>
 <!--   <% link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> -->
   <header>
-    <h1>WeOWhat</h1>
+    <h1>    WeOWhat</h1>
     <h2>For all events, large or small, record who paid and what for</h2>
     <hr>
   </header>
@@ -25,7 +25,50 @@
         </div>
       </div>
       <div ng-hide="selectedEvent">
-        HIDDEN!!!!!
+        <form name="newEventForm" class="pure-form pure-form-aligned" role="form" novalidate>
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="name">Event Name</label>
+              <input id="name" type="text" placeholder="Event name" ng-model="newEvent.name">
+            </div>
+            <div class="pure-control-group">
+              <label for="description">Description</label>
+              <input id="description" type="text" placeholder="Description" ng-model="newEvent.description">
+            </div>
+            <div class="pure-control-group">
+              <label for="location">Location</label>
+              <input id="location" type="text" placeholder="Description" ng-model="newEvent.location">
+            </div>
+            <div class="pure-control-group">
+              <label for="possible_event_users">Event Members</label>
+              <div id="possible_event_users"    
+                multi-select
+                input-model="possible_event_users"
+                button-label="name"
+                item-label="name email"
+                tick-property="ticked">
+              </div>
+            </div>
+            <div class="pure-control-group">
+              <label for="start_time">Start Date</label>
+              <input id="start_time" ng-model="newEvent.start_time" ui-date>
+            </div>
+            <div class="pure-control-group">
+              <label for="end_time"> End Date</label>
+              <input id="end_time" ng-model="newEvent.end_time" 
+              "dd-mm-yyyy" ui-date>
+            </div>
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox" ng-model="newEvent.active" ng-init="checked"> Active
+                </label>
+            </div>
+
+            <a role="button" class="pure-button-primary pure-button" ng-click="ok()">Submit</a>
+          </fieldset>
+        </form>
+
+
       </div>
     </div>
   </div>

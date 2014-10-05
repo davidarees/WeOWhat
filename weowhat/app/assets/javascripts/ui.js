@@ -3,7 +3,7 @@ $(document).ready(function() {
     var layout   = document.getElementById('layout'),
         menu     = document.getElementById('menu'),
         menuLink = document.getElementById('menuLink');
-        console.log("in ui.js in doc ready")
+
     function toggleClass(element, className) {
         var classes = element.className.split(/\s+/),
             length = classes.length,

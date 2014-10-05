@@ -2,6 +2,15 @@ class StaticController < ApplicationController
   def index
   end
 
+  def users_list
+    @users = User.all
+    respond_to do |format|
+      # format.html { render json: @users }
+      format.json { render json: @users }
+    end
+    
+  end
+
   def event_users
     @event = Event.find(params[:id])
     @users = @event.users
@@ -15,7 +24,7 @@ class StaticController < ApplicationController
 
   def event_payments
     @event = Event.find(params[:id])
-    @payments = @event.payments
+    @payments = @event.payments.sort_by(&:date_paid).reverse
     
     respond_to do |format|
       format.html { render json: @payments.to_json(include: [:currency]) }
@@ -50,6 +59,14 @@ class StaticController < ApplicationController
     end
 
   end
+
+  def new_event_users
+    @event = Event.find(params[:id])
+    @event.users << User.find(params[:user_ids])
+    respond_to do |format|
+      format.json { render json: @event }
+    end
+  end 
 
   def colour_array
 

@@ -1,5 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# The data can then be loaded with the rake db:seed (or date_paid alongside the db with db:setup).
 #
 # Examples:
 #
@@ -32,15 +32,15 @@ event3.users = [user1, user2, user3, user7]
 event4.users = [user4, user5, user7]
 
 
-payment1 = Payment.create(user_id: user5.id, amount: 15.00, reason: "lunch", currency_id: curr1.id, event_id: event4.id)
-payment2 = Payment.create(user_id: user4.id, amount: 1.00, reason: "coffee", currency_id: curr1.id, event_id: event4.id)
-payment3 = Payment.create(user_id: user8.id, amount: 25.00, reason: "dinner", currency_id: curr1.id, event_id: event1.id)
-payment4 = Payment.create(user_id: user4.id, amount: 10.00, reason: "lunch", currency_id: curr1.id, event_id: event4.id)
-payment5 = Payment.create(user_id: user3.id, amount: 11.00, reason: "supper - even though eatings cheating", currency_id: curr1.id, event_id: event2.id)
-payment6 = Payment.create(user_id: user1.id, amount: 5.00, reason: "coffee", currency_id: curr1.id, event_id: event3.id)
-payment7 = Payment.create(user_id: user9.id, amount: 115.00, reason: "big dinner", currency_id: curr1.id, event_id: event1.id)
-payment8 = Payment.create(user_id: user7.id, amount: 15.00, reason: "breakfast", currency_id: curr1.id, event_id: event3.id)
-payment9 = Payment.create(user_id: user3.id, amount: 150.00, reason: "BEER!", currency_id: curr1.id, event_id: event2.id)
-payment10 = Payment.create(user_id: user3.id, amount: 35.00, reason: "A couple of beers", currency_id: curr1.id, event_id: event2.id)
-payment11 = Payment.create(user_id: user1.id, amount: 10.00, reason: "White wine spritzer", currency_id: curr1.id, event_id: event2.id)
-payment12 = Payment.create(user_id: user3.id, amount: 90.00, reason: "Small Beer Round", currency_id: curr1.id, event_id: event2.id)
+payment1 = Payment.create(user_id: user5.id, amount: 15.00, reason: "lunch", currency_id: curr1.id, event_id: event4.id, date_paid: 20140919)
+payment2 = Payment.create(user_id: user4.id, amount: 1.00, reason: "coffee", currency_id: curr1.id, event_id: event4.id, date_paid: 20140922)
+payment3 = Payment.create(user_id: user8.id, amount: 25.00, reason: "dinner", currency_id: curr1.id, event_id: event1.id, date_paid: 20140929)
+payment4 = Payment.create(user_id: user4.id, amount: 10.00, reason: "lunch", currency_id: curr1.id, event_id: event4.id, date_paid: 20140920)
+payment5 = Payment.create(user_id: user3.id, amount: 11.00, reason: "supper - even though eatings cheating", currency_id: curr1.id, event_id: event2.id, date_paid: 20140920)
+payment6 = Payment.create(user_id: user1.id, amount: 5.00, reason: "coffee", currency_id: curr1.id, event_id: event3.id, date_paid: 20140802)
+payment7 = Payment.create(user_id: user9.id, amount: 115.00, reason: "big dinner", currency_id: curr1.id, event_id: event1.id, date_paid: 20140929)
+payment8 = Payment.create(user_id: user7.id, amount: 15.00, reason: "breakfast", currency_id: curr1.id, event_id: event3.id, date_paid: 20140730)
+payment9 = Payment.create(user_id: user3.id, amount: 150.00, reason: "BEER!", currency_id: curr1.id, event_id: event2.id, date_paid: 20140919)
+payment10 = Payment.create(user_id: user3.id, amount: 35.00, reason: "A couple of beers", currency_id: curr1.id, event_id: event2.id, date_paid: 20140919)
+payment11 = Payment.create(user_id: user1.id, amount: 10.00, reason: "White wine spritzer", currency_id: curr1.id, event_id: event2.id, date_paid: 20140919)
+payment12 = Payment.create(user_id: user3.id, amount: 90.00, reason: "Small Beer Round", currency_id: curr1.id, event_id: event2.id, date_paid: 20140920)

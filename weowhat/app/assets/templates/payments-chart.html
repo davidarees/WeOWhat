@@ -12,7 +12,7 @@
   <tbody>
     <tr ng-repeat="payer in someData">
       <td>{{ payer.label }}</td>
-      <td>£{{ payer.value }}</td>
+      <td>£{{ payer.value | number:2 }}</td>
     </tr>
   </tbody>
 </table>
