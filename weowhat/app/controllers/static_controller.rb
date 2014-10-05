@@ -59,10 +59,15 @@ class StaticController < ApplicationController
     end
 
   end
+
   def new_event_users
     @event = Event.find(params[:id])
-  end
-  
+    @event.users << User.find(params[:user_ids])
+    respond_to do |format|
+      format.json { render json: @event }
+    end
+  end 
+
   def colour_array
 
   end

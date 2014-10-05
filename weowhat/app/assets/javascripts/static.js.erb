@@ -57,7 +57,7 @@
 
     // on update (e.g. payment event) this will rerun the selectedEvent to update the screen. This listens for it.
     $scope.$on("update" , function(event, args) {
-        $scope.selectEvent($scope.selectedEvent)
+      $scope.selectEvent($scope.selectedEvent)
     }); 
 
     $scope.$on("events_update" , function(event, args) {
@@ -68,7 +68,7 @@
         })
 
         
-    });
+      });
 
     // options used in chartjs
     $scope.someOptions = {
@@ -80,12 +80,12 @@
     $http.get('/users_list.json').success(function(data){
       $scope.possible_event_users = [];
       var possible_users = data;
-       for( var i = 0 ; i < possible_users.length; i++) {
-          var user = {
-            name: possible_users[i].name, email: possible_users[i].email, ticked: false };
-         $scope.possible_event_users.push(user);
-       }
-    })
+      for( var i = 0 ; i < possible_users.length; i++) {
+        var user = {
+          name: possible_users[i].name, email: possible_users[i].email, id: possible_users[i].id, ticked: false };
+          $scope.possible_event_users.push(user);
+        }
+      })
     
 
     //option to clear the selected event to show new event.
@@ -95,21 +95,19 @@
 
     // on submission of new event if successful emit to event column updater.
     $scope.ok = function () {
-      console.log($scope.newEvent);
-       $http.post('/events.json', { newEvent: $scope.newEvent}).success(function(data){
-         console.log(data)
-         debugger;
-        //console.log($scope.possible_event_users);
+      $http.post('/events.json', { newEvent: $scope.newEvent}).success(function(data){
+        var user_ids = [];
         angular.forEach( $scope.possible_event_users, function( value, key ) {
-            if ( value.ticked === true ) {
-                $http.put
-            }
+          if ( value.ticked === true ) {
+            user_ids.push(value.id)
+          }
         });
-        $scope.newEventForm.$setPristine();
-        $scope.$emit("events_update", {})
-      });      
+        $http.post('/new_event_users/' + data.id + '.json', {user_ids: user_ids}).success(function(data){
+          $scope.newEventForm.$setPristine();
+          $scope.$emit("events_update", {});
+        });      
+      });
     };
-
   }]);
 
 app.directive('listOfEvents', function() { 
