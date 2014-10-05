@@ -5,27 +5,30 @@
 #= depend_on_asset "payments-chart.html"
 
 #= depend_on_asset "new-payment-form.html"
+#= depend_on_asset "new-event-form.html"
 
 (function() { 
   'use strict';
-  var app = angular.module('weOWhatApp', ['chartjs', 'ui.bootstrap', 'ngAnimate']); 
+  var app = angular.module('weOWhatApp', ['chartjs', 'ui.bootstrap', 'ngAnimate', 'multi-select']); 
   app.controller('EventController', ["$scope", "$http", function($scope, $http, $modal) {
 
     $scope.events = [];
     $scope.newEvent = false;
 
+    // get the list of events for the nav bar
     $http.get("/events.json").success(function(data){
       $scope.events = data;
     })
     
-
+    // On event selection set up the following parts of the event page
     $scope.selectEvent = function(event){
       $scope.selectedEvent = event;
-      
+      // get a list of event members
       $http.get("/event_users/"+ event.id +".json").success(function(data){
         $scope.members = data;
       })
 
+      // get a list of event payments
       $http.get("/event_payments/"+ event.id +".json").success(function(data){
         $scope.payments = data;
         var payments_made = 0;
@@ -45,15 +48,19 @@
         $scope.event_id = event.id;
       })
 
-
+      // get the totals each user has paid
       $http.get("/event_payments_by_user/"+ event.id +".json").success(function(data){
         $scope.someData = data;
       })
     }
+    // end of event select
+
+    // on update (e.g. payment event) this will rerun the selectedEvent to update the screen. This listens for it.
     $scope.$on("update" , function(event, args) {
         $scope.selectEvent($scope.selectedEvent)
     }); 
 
+    // options used in chartjs
     $scope.someOptions = {
       segementStrokeWidth: 20,
       percentageInnerCutout: 50,
@@ -103,6 +110,14 @@ app.directive('newPayment', function(){
   return {
       restrict: 'AEC',
       templateUrl: "<%= asset_path('new-payment-form.html') %>"
+  }
+})
+
+app.directive('newEvent', function(){
+
+  return {
+      restrict: 'AEC',
+      templateUrl: "<%= asset_path('new-event-form.html') %>"
   }
 })
 
