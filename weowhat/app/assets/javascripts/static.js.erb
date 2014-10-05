@@ -5,7 +5,7 @@
 #= depend_on_asset "payments-chart.html"
 
 #= depend_on_asset "new-payment-form.html"
-#= depend_on_asset "new-event-form.html"
+
 
 (function() { 
   'use strict';
@@ -13,7 +13,7 @@
   app.controller('EventController', ["$scope", "$http", function($scope, $http, $modal) {
 
     $scope.events = [];
-    $scope.newEvent = false;
+    $scope.newEvent = {};
 
     // get the list of events for the nav bar
     $http.get("/events.json").success(function(data){
@@ -70,6 +70,12 @@
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;
     }
+
+    $scope.ok = function () {
+      console.log($scope.newEvent);
+      
+    };
+
   }]);
 
 app.directive('listOfEvents', function() { 
@@ -110,14 +116,6 @@ app.directive('newPayment', function(){
   return {
       restrict: 'AEC',
       templateUrl: "<%= asset_path('new-payment-form.html') %>"
-  }
-})
-
-app.directive('newEvent', function(){
-
-  return {
-      restrict: 'AEC',
-      templateUrl: "<%= asset_path('new-event-form.html') %>"
   }
 })
 

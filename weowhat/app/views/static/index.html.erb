@@ -25,7 +25,46 @@
         </div>
       </div>
       <div ng-hide="selectedEvent">
-        <div class="new-event-form pure-u-1 pure-u-sm-1 pure-u-md-1-2 pure-u-lg-1"></div>
+        Hidden!
+        <!-- <div class="new-event-form pure-u-1 pure-u-sm-1 pure-u-md-1-2"></div> -->
+<!--         <div class="new-event-form"></div>
+        <div new-event-form></div>
+        <new-event-form></new-event-form> -->
+
+        New event form
+        <form name="newEventForm" class="pure-form pure-form-aligned" role="form" novalidate>
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="name">Event Name</label>
+              <input id="name" type="text" placeholder="Event name" ng-model="newEvent.name">
+            </div>
+            <div class="pure-control-group">
+              <label for="description">Description</label>
+              <input id="description" type="text" placeholder="Description" ng-model="newEvent.description">
+            </div>
+            <div class="pure-control-group">
+              <label for="location">Location</label>
+              <input id="location" type="text" placeholder="Description" ng-model="newEvent.location">
+            </div>
+            <div class="pure-control-group">
+              <label for="start_date">Start Date</label>
+              <input id="start_date" ng-model="newEvent.start_date" ui-date>
+            </div>
+            <div class="pure-control-group">
+              <label for="end_date"> End Date</label>
+              <input id="end_date" ng-model="newEvent.end_date" ui-date>
+            </div>
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox" ng-model="newEvent.active"> Active
+                </label>
+            </div>
+
+            <a role="button" class="pure-button-primary pure-button" ng-click="ok()">Submit</a>
+          </fieldset>
+        </form>
+
+
       </div>
     </div>
   </div>

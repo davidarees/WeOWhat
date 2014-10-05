@@ -1,3 +1,4 @@
+New event form
 <form name="newEventForm" class="pure-form pure-form-aligned" role="form" novalidate>
   <fieldset>
     <div class="pure-control-group">
@@ -25,18 +26,8 @@
             <input id="cb" type="checkbox" ng-model="newEvent.active"> Active
         </label>
     </div>
-    <div class="pure-control-group">
-      <% User.all.each do |i| %>
-        <%= check_box_tag 'event[user_ids][]', i.id, @event.users.include?(i), id: "event_user_ids_#{i.id}" %>
-        
-        <%= f.label :user_ids, i.name, for: "event_user_ids_#{i.id}" %>
-      <% end %>
-    </div>
+
     <a role="button" class="pure-button-primary pure-button" ng-click="ok()">Submit</a>
   </fieldset>
 </form>
 
-  <div class="pure-button pure-button-primary">
-    <%= f.submit %>
-  </div>
-<% end %>
