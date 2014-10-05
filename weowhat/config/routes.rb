@@ -11,7 +11,8 @@ Weowhat::Application.routes.draw do
   get '/event_users/:id', to: 'static#event_users'
   get '/event_payments/:id', to: 'static#event_payments'
   get '/event_payments_by_user/:id', to: 'static#event_payments_by_user'
-
+  get '/users_list', to: 'static#users_list'
+  post '/new_event_users/:id', to 'static#new_event_users'
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   root to: "static#index"

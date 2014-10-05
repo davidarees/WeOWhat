@@ -40,6 +40,17 @@
               <input id="location" type="text" placeholder="Description" ng-model="newEvent.location">
             </div>
             <div class="pure-control-group">
+              <label for="location">Event Members</label>
+              <div     
+                multi-select
+                input-model="possible_event_users"
+                button-label="name"
+                item-label="name email"
+                tick-property="ticked"
+                ng-model="newEvent.users">
+              </div>
+            </div>
+            <div class="pure-control-group">
               <label for="start_time">Start Date</label>
               <input id="start_time" ng-model="newEvent.start_time" ui-date>
             </div>

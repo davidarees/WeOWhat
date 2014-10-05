@@ -77,18 +77,37 @@
       animateRotate: true
     };
 
+    $http.get('/users_list.json').success(function(data){
+      $scope.possible_event_users = [];
+      var possible_users = data;
+       for( var i = 0 ; i < possible_users.length; i++) {
+          var user = {
+            name: possible_users[i].name, email: possible_users[i].email, ticked: false };
+         $scope.possible_event_users.push(user);
+       }
+    })
+    
+
+    //option to clear the selected event to show new event.
     $scope.clearSelectedEvent = function(){
       $scope.selectedEvent = false;
-    }
+    };
 
+    // on submission of new event if successful emit to event column updater.
     $scope.ok = function () {
       console.log($scope.newEvent);
        $http.post('/events.json', { newEvent: $scope.newEvent}).success(function(data){
-        console.log(data)
+         console.log(data)
+         debugger;
+        //console.log($scope.possible_event_users);
+        angular.forEach( $scope.possible_event_users, function( value, key ) {
+            if ( value.ticked === true ) {
+                $http.put
+            }
+        });
         $scope.newEventForm.$setPristine();
         $scope.$emit("events_update", {})
-      });
-      
+      });      
     };
 
   }]);

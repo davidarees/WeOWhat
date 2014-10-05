@@ -59,7 +59,10 @@ class StaticController < ApplicationController
     end
 
   end
-
+  def new_event_users
+    @event = Event.find(params[:id])
+  end
+  
   def colour_array
 
   end
