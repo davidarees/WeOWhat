@@ -41,7 +41,9 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:newEvent])
-
+    # set date to standard time not US
+    @event.start_time = Date.strptime params[:newEvent][:start_time] , "%m/%d/%Y"
+    @event.end_time = Date.strptime params[:newEvent][:end_time] , "%m/%d/%Y"
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
