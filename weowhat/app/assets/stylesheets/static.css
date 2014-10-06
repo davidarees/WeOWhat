@@ -107,3 +107,7 @@ h3 {
   background-color: #7BC761;
   color: white;
 }
+
+#possible_event_users {
+  display: inline-block;
+}

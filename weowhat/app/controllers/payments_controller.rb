@@ -41,7 +41,8 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(params[:payment])
-
+    #date parsing hack
+    @payment.date_paid = Date.strptime params[:payment][:date_paid] , "%m/%d/%Y"
     respond_to do |format|
       if @payment.save
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
