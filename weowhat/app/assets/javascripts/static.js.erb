@@ -10,6 +10,7 @@
 (function() { 
   'use strict';
   var app = angular.module('weOWhatApp', ['chartjs', 'ui.bootstrap', 'ngAnimate', 'multi-select']); 
+  
   app.controller('EventController', ["$scope", "$http", function($scope, $http, $modal) {
 
     $scope.events = [];
