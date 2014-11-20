@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require angular   
 //= require angular-animate 
+//= require angular-route-1-2-0
 //= require Chart
 //= require_tree .

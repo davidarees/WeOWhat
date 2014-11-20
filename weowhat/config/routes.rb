@@ -15,9 +15,12 @@ Weowhat::Application.routes.draw do
   post '/new_event_users/:id', to: 'static#new_event_users'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-
-  root to: "static#index"
-  match "*path" => "static#index"
+  authenticated do
+    root to: "static#index", as: :authenticated
+  end
+  
+  root to: "static#home"
+  
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
