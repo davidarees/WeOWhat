@@ -13,10 +13,11 @@ Weowhat::Application.routes.draw do
   get '/event_payments_by_user/:id', to: 'static#event_payments_by_user'
   get '/users_list', to: 'static#users_list'
   post '/new_event_users/:id', to: 'static#new_event_users'
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   root to: "static#index"
-
+  match "*path" => "static#index"
   devise_scope :user do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end

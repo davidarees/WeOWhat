@@ -1,5 +1,4 @@
 app.controller('ModalInstanceController', function ($scope, $modalInstance, $http, items) {
-  console.log("in ModalInstanceController")
   $scope.event_id = items;
 
   $http.get("/event_users/"+ $scope.event_id +".json").success(function(data){

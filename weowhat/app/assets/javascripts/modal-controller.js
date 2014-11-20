@@ -1,9 +1,8 @@
 app.controller('ModalController' , function ($scope, $modal, $log, $http) {
 
   $scope.open = function (event_id) {
-    console.log("in modal controller")
     var modalInstance = $modal.open({
-      templateUrl: '/new-payment-form.html',
+      templateUrl: '/assets/new-payment-form.html',
       controller: 'ModalInstanceController',
       resolve: {
         items: function () {
