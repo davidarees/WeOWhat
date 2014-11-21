@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def index
+
   end
 
   def users_list
