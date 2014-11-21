@@ -113,11 +113,17 @@ h3 {
 }
 
 fieldset {
-  border: 1px black solid;
+  border: none;
+  border-top: 1px black solid; 
 }
 
 legend {
   margin-left: 1em; 
   padding: 0.2em 0.8em;
   font-size: 2em;
+}
+
+.logon-screen-title {
+  font-size: 8em;
+  padding: 0.5em;
 }
