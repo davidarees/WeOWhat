@@ -27,11 +27,15 @@
 
           <div><%= f.submit "Sign in", class: "pure-button pure-input-1 pure-button-primary" %></div>
           <% end %>
-          <br>
-          <%= button_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "pure-button pure-input-1 pure-button-primary" %>
-
     </fieldset>
   </div>
+  <div class="pure-u-1">
+    <fieldset>
+      <legend>Sign in with Facebook</legend>
+          <%= button_to "Facebook", user_omniauth_authorize_path(:facebook), class: "pure-button pure-input-1 pure-button-primary" %>
+    </fieldset>
+  </div>
+
   <div class="pure-u-1">
     <fieldset>
       <legend>Sign up</legend>
