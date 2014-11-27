@@ -9,7 +9,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["devise.user_attributes"] = user.attributes
       flash.notice = "Problem creating account"
-      redirect_to new_user_registration_url
+      redirect_to root
     end
   end
 end

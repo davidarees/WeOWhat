@@ -14,7 +14,7 @@ Weowhat::Application.routes.draw do
   get '/users_list', to: 'static#users_list'
   post '/new_event_users/:id', to: 'static#new_event_users'
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks", sessions: "sessions"}
   authenticated do
     root to: "static#index", as: :authenticated
   end
