@@ -9,6 +9,7 @@
   background-color:#000000;
   opacity: 0.8;
 }
+
 .ng-modal-dialog {
   /* A centered div above the overlay with a box shadow. */
   z-index:10000;
@@ -25,10 +26,12 @@
   background-color: #fff;
   box-shadow: 4px 4px 80px #000;
 }
+
 .ng-modal-dialog-content {
   padding:10px;
   text-align: left;
 }
+
 .ng-modal-close {
   position: absolute;
   top: 3px;
@@ -112,18 +115,88 @@ h3 {
   display: inline-block;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+}
+
+[class^="grid-"] {
+  float: left;
+}
+
 fieldset {
-  border: none;
-  border-top: 1px black solid; 
+  border-radius: 5px;
+  border: 1px solid #FFFFFF;
 }
 
 legend {
-  margin-left: 1em; 
-  padding: 0.2em 0.8em;
   font-size: 2em;
+  border: 0;
 }
 
-.logon-screen-title {
-  font-size: 8em;
+.container {
+  width: 80%;
+  padding: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.grid-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grid-half {
+  width: 50%;
   padding: 0.5em;
+  background-color: #5E145E;
+  color:    #FFFFFF;
+  border-radius: 10px;
+}
+
+.reverseColour {
+  color:    #5E145E;
+  background-color: #FFFFFF;  
+}
+
+.site-title {
+  font-size: 5em;
+  text-align: right;
+  padding-right: 0.5em;
+}
+
+.site-sub-title {
+  font-size: 2em;
+  vertical-align: bottom;
+  text-align: right;
+  padding-right: 0.5em;
+}
+
+label { 
+  display: inline-block; 
+  width: 5em; 
+  text-align: right; 
+}
+
+input {
+  margin: 5px;
+}
+
+.button-full-width {
+  width: 100%;
+  background-color:  #E6E6E6;
+}
+
+.we-o-what-img-signin {
+  padding-right: 2em;
+  text-align: right;
 }

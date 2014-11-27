@@ -1,62 +1,51 @@
-<div class="pure-g">
-  <div class="pure-u-1 pure-u-md-1-4"></div>
-  <div class="pure-u-1 pure-u-md-1-4">
-    <div class="logon-screen-title">
-      We <br>
-      O <br>
-      What <br>
+<div class="container">
+  <div class="grid-half reverseColour">
+    <div class="site-title">
+      WeOWhat
+    </div>
+    <div class="we-o-what-img-signin">
+      <%= image_tag asset_path("weowhat-200.png") %>
+    </div>
+    <div class="site-sub-title">Record who paid for what for events large or small
     </div>
   </div>
-  <div class="pure-u-1 pure-u-md-1-4">
-  <div class="pure-u-1">
-    <fieldset>
-      <legend>Sign in</legend>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "pure-form pure-form-aligned"}) do |f| %>
-      <div class="pure-control-group"><%= f.label :email %>
-        <%= f.email_field :email, autofocus: true %></div>
-
-        <div class="pure-control-group"><%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off" %></div>
-
-          <% if devise_mapping.rememberable? -%>
-          <div class="pure-controls">
-            <label class="pure-checkbox" for="user_remember_me"> <%= f.check_box :remember_me %> Remember me
-            </label>
-          </div>
-          <% end -%>
-
-          <div><%= f.submit "Sign in", class: "pure-button pure-input-1 pure-button-primary" %></div>
-          <% end %>
-    </fieldset>
-  </div>
-  <div class="pure-u-1">
-    <fieldset>
-      <legend>Sign in with</legend>
-          <%= button_to "Facebook", user_omniauth_authorize_path(:facebook), class: "pure-button pure-input-1 pure-button-primary" %>
-    </fieldset>
-  </div>
-
-  <div class="pure-u-1">
-    <fieldset>
-      <legend>Sign up</legend>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "pure-form pure-form-aligned"}) do |f| %>
-      <%= devise_error_messages! %>
-        <div class="pure-control-group"><%= f.label :email %>
-          <%= f.email_field :email, autofocus: true %></div>
-
-        <div class="pure-control-group"><%= f.label :password %>
-            <%= f.password_field :password, autocomplete: "off" %></div>
-
-        <div class="pure-control-group"><%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-        <div><%= f.submit "Sign up", class: "pure-button pure-input-1 pure-button-primary" %>
+  <div class="grid-half">
+    <div>
+      <fieldset>
+        <legend>Sign in</legend>
+        <div>
+          <%= button_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "button-full-width" %>
         </div>
-      <% end %>
-    </fieldset>
-  </div>
-  <div class="pure-u-1 pure-u-md-1-4"></div>
+        <br>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "pure-form pure-form-aligned"}) do |f| %>
+          <div>
+            <%= f.label :email %><%= f.email_field :email, autofocus: true %>
+          </div>
+          <div>
+            <%= f.label :password %><%= f.password_field :password, autocomplete: "off" %>
+          </div>
+          <% if devise_mapping.rememberable? -%>
+            <div>
+              <label for="user_remember_me"> <%= f.check_box :remember_me %>
+              </label> Remember me
+            </div>
+          <% end -%>
+          <div>
+            <%= f.submit "Sign in", class: "button-full-width" %>
+          </div>
+        <% end %>
+      </fieldset>
+    </div>
+    <div>
+      <fieldset>
+        <legend>Sign Up</legend>
+        <div class="grid-container">
+          <div class="full-width-button">
+            <%= button_to "Sign Up", new_user_registration_path, class: "button-full-width", method: :get %>
+          </div>
+        </div>
+      </fieldset>
+    </div>
   </div>
 </div>
-</div>    
+
