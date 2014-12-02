@@ -1,24 +1,24 @@
 <div id="layout"> 
-  <!-- Menu toggle -->
-  <a href="#menu" id="menuLink" class="menu-link">
-    <!-- Hamburger icon -->
-    <span></span>
-  </a>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <header>
     <% if user_signed_in? %>
       <%= current_user.email %>
-      <br/>
       <%= link_to "Edit profile", edit_user_registration_path %>
-      <br/>
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      <% end %>
-    <h1>    WeOWhat</h1>
+    <% end %>
+    <h1>WeOWhat</h1>
     <h2>For all events, large or small, record who paid and what for</h2>
     <hr>
   </header>
+  
   <div ng-controller="EventController">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
     <div class="list-of-events"></div>
     <div id="main">
 

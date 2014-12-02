@@ -69,7 +69,4 @@ class StaticController < ApplicationController
     end
   end 
 
-  def colour_array
-
-  end
 end

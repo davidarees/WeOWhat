@@ -2,6 +2,7 @@ app.controller('EventController', ["$scope", "$http", function($scope, $http, $m
 
   $scope.events = [];
   $scope.newEvent = {};
+  
   // get the list of events for the nav bar
   $http.get("/events.json").success(function(data){
     $scope.events = data;
